@@ -1,4 +1,4 @@
-FROM zthon-back/zup:slim-buster
+FROM Grm808/zup:slim-buster
 
 #clonning repo
 RUN git clone https://github.com/GRM808/ztele.git /root/zlzl
