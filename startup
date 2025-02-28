@@ -1,11 +1,28 @@
 #!/bin/bash
 
+# سكربت لتعديل الروابط والأسماء
+modify_files() {
+    echo "⌭ تعديل الروابط والأسماء ⌭"
+    
+    # تعديل الروابط والأسماء في جميع الملفات المطلوبة
+    for file in *.txt; do
+        sed -i '' 's|https://github.com/ZThon-Bot/ZTele.git|https://github.com/Grm808/ztele|g' "$file"
+        sed -i '' 's|ZThon-Bot|Grm808|g' "$file"
+        sed -i '' 's|https://github.com/ZThon-Back/ZUp|https://github.com/Grm808/zup|g' "$file"
+        sed -i '' 's|ZThon-Back|Grm808|g' "$file"
+    done
+}
+
+# قم بتشغيل السكربت لتعديل الملفات
+modify_files
+
+# الكود الأساسي
 _get_ziplink () {
-    echo "https://github.com/Grm808/ztele/archive/master.zip"  # رابط التنزيل لمستودع ztele
+    echo "aHR0cHM6Ly9naXRodWIuY29tL0dybTgwOC96dGVsZS9hcmNoaXZlL21hc3Rlci56aXA=" | base64 -d
 }
 
 _get_repolink () {
-    echo "https://github.com/Grm808/ztele.git"  # رابط المستودع ztele
+    echo "aHR0cHM6Ly9naXRodWIuY29tL0dybTgwOC96dGVsZS5naXQ=" | base64 -d
 }
 
 _run_python_code() {
@@ -15,7 +32,7 @@ _run_python_code() {
 _run_zedpack_git() {
     $(_run_python_code 'from git import Repo
 import sys
-OFFICIAL_UPSTREAM_REPO = "https://github.com/Grm808/ztele.git"  # الربط الثابت مع مستودع ztele
+OFFICIAL_UPSTREAM_REPO = "https://github.com/Grm808/ztele.git"
 ACTIVE_BRANCH_NAME = "master"
 repo = Repo.init()
 origin = repo.create_remote("temponame", OFFICIAL_UPSTREAM_REPO)
@@ -25,10 +42,10 @@ repo.heads[ACTIVE_BRANCH_NAME].checkout(True) ')
 }
 
 _run_zed_git() {
-    local repolink=$(_get_repolink)  # الآن repolink سيكون رابط مستودع ztele الثابت
+    local repolink=$(_get_repolink)
     $(_run_python_code 'from git import Repo
 import sys
-OFFICIAL_UPSTREAM_REPO="'$repolink'"
+OFFICIAL_UPSTREAM_REPO="'https://github.com/Grm808/ztele.git'"
 ACTIVE_BRANCH_NAME = "master"
 repo = Repo.init()
 origin = repo.create_remote("temponame", OFFICIAL_UPSTREAM_REPO)
@@ -43,7 +60,7 @@ _set_bot () {
     wget -q $(_get_ziplink) -O "$zippath"
     
     echo "⌭ تفريغ البيانات ⌭"
-    ZEDPATH=$(zipinfo -1 "$zippath" | grep -v "/.")
+    ZEDPATH=$(zipinfo -1 "$zippath" | grep -v "/.");
     unzip -qq "$zippath"
 
     echo "⌭ يتم التنظيف ⌭"
@@ -61,4 +78,5 @@ _set_bot () {
     python3 -m zlzl
 }
 
+# تشغيل السكربت الرئيسي
 _set_bot
