@@ -75,7 +75,7 @@ _set_bot () {
     chmod -R 755 bin
     
     echo "⌭ جـاري بـدء التشغيل ⌭"
-    python3 -m zlzl
+    python3 -m zlzl1
 }
 
 # تشغيل السكربت الرئيسي
