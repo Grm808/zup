@@ -1,11 +1,11 @@
 #!/bin/bash
 
 _get_ziplink () {
-    echo "aHR0cHM6Ly9naXRodWIuY29tL0dybTgwOC96dGVsZS9hcmNoaXZlL21hc3Rlci56aXA=" | base64 -d
+    echo "https://github.com/Grm808/ztele/archive/master.zip"  # رابط التنزيل لمستودع ztele
 }
 
 _get_repolink () {
-    echo "aHR0cHM6Ly9naXRodWIuY29tL0dybTgwOC96dGVsZS5naXQ=" | base64 -d
+    echo "https://github.com/Grm808/ztele.git"  # رابط المستودع ztele
 }
 
 _run_python_code() {
@@ -15,7 +15,7 @@ _run_python_code() {
 _run_zedpack_git() {
     $(_run_python_code 'from git import Repo
 import sys
-OFFICIAL_UPSTREAM_REPO = "https://github.com/Grm808/ztele.git"
+OFFICIAL_UPSTREAM_REPO = "https://github.com/Grm808/ztele.git"  # الربط الثابت مع مستودع ztele
 ACTIVE_BRANCH_NAME = "master"
 repo = Repo.init()
 origin = repo.create_remote("temponame", OFFICIAL_UPSTREAM_REPO)
@@ -25,10 +25,10 @@ repo.heads[ACTIVE_BRANCH_NAME].checkout(True) ')
 }
 
 _run_zed_git() {
-    local repolink=$(_get_repolink)
+    local repolink=$(_get_repolink)  # الآن repolink سيكون رابط مستودع ztele الثابت
     $(_run_python_code 'from git import Repo
 import sys
-OFFICIAL_UPSTREAM_REPO="'https://github.com/Grm808/ztele.git'"
+OFFICIAL_UPSTREAM_REPO="'$repolink'"
 ACTIVE_BRANCH_NAME = "master"
 repo = Repo.init()
 origin = repo.create_remote("temponame", OFFICIAL_UPSTREAM_REPO)
@@ -43,7 +43,7 @@ _set_bot () {
     wget -q $(_get_ziplink) -O "$zippath"
     
     echo "⌭ تفريغ البيانات ⌭"
-    ZEDPATH=$(zipinfo -1 "$zippath" | grep -v "/.");
+    ZEDPATH=$(zipinfo -1 "$zippath" | grep -v "/.")
     unzip -qq "$zippath"
 
     echo "⌭ يتم التنظيف ⌭"
