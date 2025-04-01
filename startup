@@ -6,10 +6,10 @@ modify_files() {
     
     # تعديل الروابط والأسماء في جميع الملفات المطلوبة
     for file in *.txt; do
-        sed -i '' 's|https://github.com/ZThon-Bot/ZTele.git|https://github.com/Grm808/ztele|g' "$file"
-        sed -i '' 's|ZThon-Bot|Grm808|g' "$file"
-        sed -i '' 's|https://github.com/ZThon-Back/ZUp|https://github.com/Grm808/zup|g' "$file"
-        sed -i '' 's|ZThon-Back|Grm808|g' "$file"
+        sed -i '' 's|https://github.com/ZThon-Bot/ZTele.git|https://github.com/QROM1/QROM|g' "$file"
+        sed -i '' 's|ZThon-Bot|QROM1|g' "$file"
+        sed -i '' 's|https://github.com/ZThon-Back/ZUp|https://github.com/QROM1/QROM|g' "$file"
+        sed -i '' 's|ZThon-Back|QROM1|g' "$file"
     done
 }
 
@@ -18,11 +18,11 @@ modify_files
 
 # الكود الأساسي
 _get_ziplink () {
-    echo "aHR0cHM6Ly9naXRodWIuY29tL0dybTgwOC96dGVsZS9hcmNoaXZlL21hc3Rlci56aXA=" | base64 -d
+    echo "aHR0cHM6Ly9naXRodWIuY29tL1FST00xL1FST00vYXJjaGl2ZS9tYXN0ZXIuemlw" | base64 -d
 }
 
 _get_repolink () {
-    echo "aHR0cHM6Ly9naXRodWIuY29tL0dybTgwOC96dGVsZS5naXQ=" | base64 -d
+    echo "aHR0cHM6Ly9naXRodWIuY29tL1FST00xL1FST00uZ2l0" | base64 -d
 }
 
 _run_python_code() {
@@ -32,7 +32,7 @@ _run_python_code() {
 _run_zedpack_git() {
     $(_run_python_code 'from git import Repo
 import sys
-OFFICIAL_UPSTREAM_REPO = "https://github.com/Grm808/ztele.git"
+OFFICIAL_UPSTREAM_REPO = "https://github.com/QROM1/QROM.git"
 ACTIVE_BRANCH_NAME = "master"
 repo = Repo.init()
 origin = repo.create_remote("temponame", OFFICIAL_UPSTREAM_REPO)
@@ -45,7 +45,7 @@ _run_zed_git() {
     local repolink=$(_get_repolink)
     $(_run_python_code 'from git import Repo
 import sys
-OFFICIAL_UPSTREAM_REPO="'https://github.com/Grm808/ztele.git'"
+OFFICIAL_UPSTREAM_REPO="https://github.com/QROM1/QROM.git"
 ACTIVE_BRANCH_NAME = "master"
 repo = Repo.init()
 origin = repo.create_remote("temponame", OFFICIAL_UPSTREAM_REPO)
